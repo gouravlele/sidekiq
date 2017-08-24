@@ -1,15 +1,16 @@
 # config valid only for current version of Capistrano
 lock "3.9.0"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "sidekiq_app"
+set :repo_url, "git@github.com:gouravlele/sidekiq.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
+set :branch, "master"
+set :user, "ubuntu"
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
-
+set :deploy_to, "/var/www/sidekiq_app"
+set :use_sudo, false
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
@@ -33,4 +34,9 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
+set :ssh_options, {
+   keys: %w(/home/rlisowski/.ssh/id_rsa),
+   forward_agent: true,
+   user: 'ubuntu'
+ }

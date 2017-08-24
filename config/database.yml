@@ -6,3 +6,11 @@ development:
   username: root  
   password: root
   host: localhost
+production:
+  adapter: postgresql  
+  encoding: utf8
+  database: redis_app
+  pool: 5
+  username: root  
+  password: root
+  host: localhost  
