@@ -17,6 +17,7 @@ class StudentsController < ApplicationController
       spreadsheet = MyFileUtil.open_file(params[:file])
       if spreadsheet.last_row > 1000
         flash[:alert] = "Not Authorized!!!"
+        render :action => :import
       else
         @import_file = Import.create(file: params[:file])
         UploadWorker.perform_async(@import_file.id)
