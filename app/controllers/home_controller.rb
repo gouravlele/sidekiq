@@ -1,6 +1,6 @@
 class HomeController < ApplicationController 
   def index
-    
+
   end
 
   def download_sample_csv

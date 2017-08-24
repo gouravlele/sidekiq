@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   require 'sidekiq/web'
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
   get 'home/download_sample_csv'
   get 'home/sample'
   resources :students do
@@ -10,12 +10,5 @@ Rails.application.routes.draw do
       post :upload
     end
   end    
-  devise_scope :user do
-    authenticated :user do
-      root 'home#index', as: :authenticated_root
-    end
-    unauthenticated do
-      root 'devise/registrations#new', as: :unauthenticated_root
-    end
-  end
+  root 'home#index'
 end

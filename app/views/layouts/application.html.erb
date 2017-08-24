@@ -9,6 +9,13 @@
   </head>
 
   <body>
+  	<div class="container-fluid"  style="padding-left: 0px; padding-right: 0px;">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
     <%= yield %>
   </body>
 </html>
