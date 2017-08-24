@@ -62,3 +62,5 @@ gem 'roo','~> 1.11.2'
 gem 'rubyzip2'
 gem 'sidekiq'
 gem "paperclip", "~> 5.0.0"
+gem 'capistrano', '~> 3.6'
+gem 'capistrano-rails', '~> 1.3'
