@@ -9,7 +9,7 @@ set :repo_url, "git@github.com:gouravlele/sidekiq.git"
 set :branch, "master"
 set :user, "ubuntu"
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/sidekiq_app"
+set :deploy_to, "/home/ubuntu/sidekiq_app"
 set :use_sudo, false
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -36,7 +36,20 @@ set :use_sudo, false
 # Default value for keep_releases is 5
 set :keep_releases, 5
 set :ssh_options, {
-   keys: %w(/home/rlisowski/.ssh/id_rsa),
+   keys: %w(/home/yuva/Downloads/sidekiqpem.pem),
    forward_agent: true,
    user: 'ubuntu'
  }
+
+namespace :deploy do
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+        # run :rake, 'cache:clear'      
+        run "sudo service nginx restart"
+      # end
+    end
+  end
+end
